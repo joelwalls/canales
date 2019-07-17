@@ -15,10 +15,10 @@ namespace AdministradorCanales
 {
     public class TwitterApi
     {
-        private string oAuthConsumerKey = "lEDneNFfEAgad0v6pefIuZLEe";
-        private string oAuthConsumerSecret = "GvDPN5s4KHvbLI9iZU6de4K1vMMoS1A1c4CKZDx4zcRkA4PRne";
-        private string accessToken = "64731768-5LbEKahE9BsBCO4qxtjr0VwpIxCX0DAf9YIcxBjf7";
-        private string accessTokenSecret = "MZqeBEKYI0whdeVnI554YAuLSQb5vHm9RMIy0qsS5VSc2";
+        private string oAuthConsumerKey = "ehkU50pVNdhPHjSCuUXK6ttKd";
+        private string oAuthConsumerSecret = "0Z95wRkpQ3uEbveYXmoM0Ev0by7pJyYFi6CfGU94xiBgR2KZNo";
+        private string accessToken = "1151586589988007936-klTC4k2fWhJBlVIo0uDWTjUJ6s6Tlq";
+        private string accessTokenSecret = "uY9ZRM4N5yJ9RUeDp2uZtGDZ4K09eOZ6DBhumF6PToNhA";
         string oAuthUrl = "https://api.twitter.com/1.1/statuses/update.json";
 
         public TwitterApi()
