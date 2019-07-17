@@ -178,6 +178,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="signalr\hubs\ChatHub.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="TwitterApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -222,6 +223,7 @@
     <Content Include="Views\User\Chat.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Management\Chat.cshtml" />
+    <Content Include="Views\Management\Twitter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

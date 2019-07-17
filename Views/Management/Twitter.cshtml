@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Twitter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model AdministradorCanales.Entities.Usuario
+
+<h2>Contacto por Twitter</h2>
+@using (Html.BeginForm("Twitter", "Management", FormMethod.Post))
+{
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="username">Usuario Twitter</label>
+                <input class="form-control" type="text" name="username"  style="max-width:none"/>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="tweet">Mensaje</label>
+                <textarea class="form-control" rows="5" id="tweet" name="tweet" style="max-width:none"></textarea>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar Tweet</button>
+</div>
+}
+
+
+
+        

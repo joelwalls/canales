@@ -116,7 +116,21 @@ namespace AdministradorCanales.Controllers
 
             return arregloChats;
         }
-        
+
+        public ActionResult Twitter()
+        {
+            ViewBag.Message = "Your application description page.";
+            return View("Twitter", new Usuario());
+        }
+
+        [HttpPost]
+        public ActionResult Twitter(string username, string tweet)
+        {
+            var twitter = new TwitterApi();
+            twitter.SendTweet(tweet + " @" + username);
+            return View("Twitter");
+        }
+
 
     }
 }
