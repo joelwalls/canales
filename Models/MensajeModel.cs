@@ -42,8 +42,7 @@ namespace AdministradorCanales.Models
         public List<Mensaje> ingresar(Mensaje mensaje)
         {
             mensajeCollection.InsertOne(mensaje);
-            return mensajeCollection.AsQueryable<Mensaje>().Where(m => m.IdChat == mensaje.IdChat).ToList();
-                
+            return mensajeCollection.AsQueryable<Mensaje>().Where(m => m.IdChat == mensaje.IdChat).ToList();   
         }
 
         public void actualizar(Mensaje mensaje)

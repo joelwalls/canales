@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Facebook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Contacto por Facebbok</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="user_ref">Usuario Facebook</label>
+                <select name="user_ref" class="form-control" id="user_ref">
+                    <option value="">Seleccionar</option>
+                    @foreach (var contacto in Model)
+                    {
+                        <option value="@contacto.user_ref">@contacto.nombre</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Mensajes
+                </div>
+                <div class="panel-body" id="chat" style="height: 300px; overflow-y:scroll; ">
+
+                </div>
+            </div>
+            <form action="" id="formulario">
+                <div class="form-group">
+                    <label for="msj">Mensaje</label>
+                    <input autocomplete="off" type="text" name="msj" id="msj" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+<script>
+    $('#formulario').submit(function (e) {
+        e.preventDefault();
+        $.post("Facebook", {
+            user_ref: $('#user_ref').val(),
+            msj: $('#msj').val()
+        }).done(function () {
+            reload($('#user_ref').val());
+        });
+        $('#msj').val('');
+    });
+
+    function reload(user_ref) {
+        console.log('intervalo');
+        if ($('#user_ref').val() != '') {
+            $.getJSON("FacebookChat?user_ref=" + user_ref, function (data) {
+                var f = '';
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].type == 'sent') {
+                        var s = "<div style='display: block; height: 25px;'><span style='float: right; border: 1px solid #ccc; border-radius: 10px 10px 0 10px; padding: 5px 10px; margin: 3px 10px;' id=''>" + data[i].msj + "</span></div><br>";
+                    } else {
+                        var s = "<div style='display: block; height: 25px;'><span style='float: left; border: 1px solid #ccc; border-radius: 10px 10px 10px 0; padding: 5px 10px; margin: 3px 10px;' id=''>" + data[i].msj + "</span></div><br>";
+                    }
+                    f += s;
+                }
+
+                $('#chat').html(f);
+                $("#chat").scrollTop($('#chat')[0].scrollHeight);
+            });
+        }
+    }
+
+    setInterval(function () {
+        reload($('#user_ref').val());
+    }, 3000);
+    
+</script>
+    }
+

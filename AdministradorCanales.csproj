@@ -162,10 +162,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BotRequest.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Entities\Chat.cs" />
+    <Compile Include="Entities\Contacto.cs" />
+    <Compile Include="Entities\Facebook.cs" />
     <Compile Include="Entities\Mensaje.cs" />
     <Compile Include="Entities\ItemChat.cs" />
     <Compile Include="Entities\Usuario.cs" />
@@ -173,6 +176,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ChatModel.cs" />
+    <Compile Include="Models\ContactoModel.cs" />
+    <Compile Include="Models\FacebookModel.cs" />
     <Compile Include="Models\MensajeModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -224,6 +229,8 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Management\Chat.cshtml" />
     <Content Include="Views\Management\Twitter.cshtml" />
+    <Content Include="Views\Management\Facebook.cshtml" />
+    <Content Include="Views\Management\Checkbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -259,7 +266,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52182</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44338/</IISUrl>
+          <IISUrl>http://localhost:44338/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

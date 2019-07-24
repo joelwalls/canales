@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Verificacion Facebook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string Random = Guid.NewGuid().ToString();
+}
+@model AdministradorCanales.Entities.Usuario
+
+<h2>El contacto por facebook requiere de autorización por parte del usuario</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="nombre">Ingresa tu nombre</label>
+            <input autocomplete="off" type="text" name="nombre" id="nombre" class="form-control" />
+        </div>
+        <div class="fb-messenger-checkbox"
+             origin=https://71f7036a.ngrok.io page_id=409637006318805 messenger_app_id=464067781040146
+  user_ref="RandomID_@Random"
+  allow_login="true"
+  size="medium"
+  skin="light"
+  center_align="false">
+</div>
+        <br />
+        <input class="btn btn-success" type="button" onclick="confirmOptIn()" value="Autorizar contacto" />
+    </div>
+</div>
+
+@section scripts{
+<script>
+    window.fbAsyncInit = function() {
+    FB.init({
+      appId: '464067781040146',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+
+    FB.Event.subscribe('messenger_checkbox', function(e) {
+      console.log("messenger_checkbox event");
+      console.log(e);
+
+      if (e.event == 'rendered') {
+        console.log("Plugin was rendered");
+      } else if (e.event == 'checkbox') {
+        var checkboxState = e.state;
+        console.log("Checkbox state: " + checkboxState);
+      } else if (e.event == 'not_you') {
+        console.log("User clicked 'not you'");
+      } else if (e.event == 'hidden') {
+        console.log("Plugin was hidden");
+      }
+
+    });
+    };
+
+    function confirmOptIn() {
+        console.log('Hizo click');
+        FB.AppEvents.logEvent('MessengerCheckboxUserConfirmation', null, {
+            'app_id': '464067781040146',
+            'page_id': '409637006318805',
+            'user_ref': 'RandomID_@Random'
+        });
+        $.post('CheckboxContacto', {
+            nombre: $('#nombre').val(),
+            user_ref: 'RandomID_@Random'
+        }).done(function () {
+            alert('Registrado!');
+        })
+    }
+</script>
+}
+
